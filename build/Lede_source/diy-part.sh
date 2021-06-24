@@ -5,7 +5,7 @@
 #
 
 sed -i "/uci commit fstab/a\uci commit network" $ZZZ
-sed -i "/uci commit network/i\uci set network.lan.ipaddr='192.168.2.2'" $ZZZ                       # IPv4 地址(openwrt后台地址)
+sed -i "/uci commit network/i\uci set network.lan.ipaddr='192.168.2.1'" $ZZZ                       # IPv4 地址(openwrt后台地址)
 sed -i "/uci commit network/i\uci set network.lan.netmask='255.255.255.0'" $ZZZ                    # IPv4 子网掩码
 sed -i "/uci commit network/i\uci set network.lan.gateway='192.168.2.1'" $ZZZ                      # IPv4 网关
 sed -i "/uci commit network/i\uci set network.lan.broadcast='192.168.2.255'" $ZZZ                  # IPv4 广播
@@ -23,7 +23,7 @@ sed -i "/uci commit system/i\uci set system.@system[0].hostname='x86-64-OpenWrt'
 
 sed -i '/CYXluq4wUazHjmCDBCqXF/d' $ZZZ                                                             # 设置密码为空
 
-#sed -i 's/PATCHVER:=5.4/PATCHVER:=4.19/g' target/linux/x86/Makefile                               # 修改内核版本为4.19
+sed -i 's/PATCHVER:=5.4/PATCHVER:=4.19/g' target/linux/x86/Makefile                               # 修改内核版本为4.19
 
 
 # 修改插件名字
@@ -38,3 +38,8 @@ sed -i 's/"Web 管理"/"Web"/g' `grep "Web 管理" -rl ./`
 sed -i 's/"管理权"/"改密码"/g' `grep "管理权" -rl ./`
 sed -i 's/"带宽监控"/"监控"/g' `grep "带宽监控" -rl ./`
 sed -i 's/"Argon 主题设置"/"Argon设置"/g' `grep "Argon 主题设置" -rl ./`
+
+git clone https://github.com/fw876/helloworld package/luci-app-ssr-plus
+git clone https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
+git clone https://github.com/jerrykuku/luci-app-vssr package/luci-app-vssr
+git clone https://github.com/vernesong/OpenClash package/luci-app-openclash
